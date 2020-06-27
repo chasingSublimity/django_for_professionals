@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  web:
+    build: .
+    command: python /code/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code # maps current directory to /code in docker file
+    ports:
+      - 8000:8000
+  
+  db:
+    image: postgres:11
+    environment: 
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
